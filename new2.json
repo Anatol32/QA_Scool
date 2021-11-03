@@ -1,12 +1,8 @@
 {
-	surname: Cheburov,
-	name: Anatoliy,
-	patronymic: Vladimirovich,
-	age: 32,
-	pets: Cat,
-	salary: "3000$"
-
-
-
-
+	"surname": "Cheburov",
+	"name": "Anatoliy",
+	"patronymic": "Vladimirovich",
+	"age": 32,
+	"pets": "Cat",
+	"salary": "3000$"
 }
