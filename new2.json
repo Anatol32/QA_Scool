@@ -1,8 +1,15 @@
 {
-	"surname": "Cheburov",
-	"name": "Anatoliy",
-	"patronymic": "Vladimirovich",
+	"surname": "Cheburov"
+	"name": "Anatoliy"
+	"patronymic": "Vladimirovich"
 	"age": 32,
-	"pets": "Cat",
+	"pets": "Cat"
 	"salary": "3000$"
+},
+{
+	"film": "pianist"
+	"TVseries": "friends"
+	"food": "potatoes with chicken"
+	"season": "summer and winter"
+	"country that I would like to visit" :"Norway"
 }
