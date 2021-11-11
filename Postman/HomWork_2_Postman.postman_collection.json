@@ -1,0 +1,465 @@
+{
+	"info": {
+		"_postman_id": "e40a9d43-3c25-42f0-903e-c2dd367c4362",
+		"name": "HomWork_2_Postman",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "EP1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var jsonData = pm.response.json();          //спарсили из респонса джейсон\r",
+							"pm.environment.set(\"token\", jsonData.token);     //назначили нужное значение из джейсона респонса (jsomData - откуда берем, token - что берем)\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "login",
+							"value": "Tolia",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "qwert",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}login",
+					"host": [
+						"{{url}}login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"pm.environment.set(\"salary\", resp.person.u_salary_1_5_year);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"let per = resp.person\r",
+							"let sal_12 = resp.qa_salary_after_12_months\r",
+							"let sal_6 = resp.qa_salary_after_6_months\r",
+							"let sal = resp.start_qa_salary\r",
+							"let sal_1_5 = resp.person.u_salary_1_5_year\r",
+							"\r",
+							"pm.test(\"structure check Json\", function () {\r",
+							"    pm.expect(resp).to.have.all.keys(\"person\", \"qa_salary_after_12_months\",\r",
+							"    \"qa_salary_after_6_months\", \"start_qa_salary\")\r",
+							"    pm.expect(resp.person).to.have.all.keys(\"u_age\", \"u_name\", \"u_salary_1_5_year\")\r",
+							"    pm.expect(resp.person.u_age).to.eql(32)\r",
+							"    pm.expect(resp.person.u_name[0]).to.eql(\"Tolia\")\r",
+							"    pm.expect(resp.person.u_name[1]).to.eql(1200) \r",
+							"    pm.expect(resp.person.u_name[2]).to.eql(32)\r",
+							"    pm.expect(resp.person.u_salary_1_5_year).to.eql(4800)\r",
+							"    pm.expect(resp.qa_salary_after_12_months).to.eql(3480.0)\r",
+							"    pm.expect(resp.qa_salary_after_6_months).to.eql(2400)\r",
+							"    pm.expect(resp.start_qa_salary).to.eql(1200)\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_sal_1.5\", function () {\r",
+							"    pm.expect(sal_1_5).to.eql(sal*4);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check_sal_12\", function () {\r",
+							"    pm.expect(sal_12).to.eql(sal*2.9);\r",
+							"}); \r",
+							"\r",
+							"pm.test(\"Check_sal_6\", function () {\r",
+							"    pm.expect(sal_6).to.eql(sal*2);\r",
+							"}); \r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"age\": 32,\r\n    \"salary\": 1200,\r\n    \"name\": \"Tolia\",\r\n    \"auth_token\": \"{{token}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}user_info",
+					"host": [
+						"{{url}}user_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"structure check Json\", function () {\r",
+							"    pm.expect(resp).to.have.all.keys(\"age\", \"name\", \"salary\");\r",
+							"    pm.expect(resp.age).to.eql(32)\r",
+							"    pm.expect(resp.name).to.eql(\"Tolia\")\r",
+							"    pm.expect(resp.salary[0]).to.eql(1200)\r",
+							"    pm.expect(resp.salary[1]).to.eql(\"2400\")\r",
+							"    pm.expect(resp.salary[2]).to.eql(\"3600\")\r",
+							"});\r",
+							"\r",
+							"let sal_1 = Number(resp.salary[1])\r",
+							"let sal_2 = Number(resp.salary[2])\r",
+							"let sal = resp.salary[0]\r",
+							"\r",
+							"\r",
+							"pm.test(\"salary*2\", function () {\r",
+							"    pm.expect(sal_1).to.eql(sal*2);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary*3\", function () {\r",
+							"    pm.expect(sal_2).to.eql(sal*3);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"salary_2>sal_and_sal1\", function () {\r",
+							"    pm.expect(sal_2).to.have.above(sal)\r",
+							"    pm.expect(sal_2).to.have.above(sal_1)\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1200",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Tolia",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}new_data",
+					"host": [
+						"{{url}}new_data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"let weight = JSON.parse(request.data.weight);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"structure check Json\", function () {\r",
+							"    pm.expect(resp).to.have.all.keys(\"age\", \"daily_food\", \"daily_sleep\", \"name\");\r",
+							"    pm.expect(resp.age).to.eql(32)\r",
+							"    pm.expect(resp.daily_food).to.eql(0.8160000000000001)\r",
+							"    pm.expect(resp.daily_sleep).to.eql(170.0)\r",
+							"    pm.expect(resp.name).to.eql(\"Tolia\")\r",
+							"});\r",
+							"\r",
+							"let age = resp.age;\r",
+							"let daily_f = resp.daily_food;\r",
+							"let daily_s = resp.daily_sleep;\r",
+							"\r",
+							"pm.test(\"weight coefficient_0,012\", function () {\r",
+							"    pm.expect(daily_f).to.eql(weight*0.012);\r",
+							"\r",
+							"});\r",
+							"pm.test(\"weight coefficient_2,5\", function () {\r",
+							"    pm.expect(daily_s).to.eql(weight*2.5);\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "weight",
+							"value": "68",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Tolia",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}} ",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}test_pet_info",
+					"host": [
+						"{{url}}test_pet_info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP5",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"\r",
+							"let name = resp.name;\r",
+							"let age_rq = JSON.parse(request.data.age);\r",
+							"let age_rs = Number(resp.age);\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"structure check Json\", function () {\r",
+							"    pm.expect(resp).to.have.all.keys(\"age\", \"family\", \"name\", \"salary\");\r",
+							"    pm.expect(resp.family).to.have.all.keys(\"children\", \"u_salary_1_5_year\")   \r",
+							"    pm.expect(resp.age).to.eql(\"32\")\r",
+							"    pm.expect(resp.family.children[0][0]).to.eql(\"Alex\")\r",
+							"    pm.expect(resp.family.children[0][1]).to.eql(24)\r",
+							"    pm.expect(resp.family.children[1][0]).to.eql(\"Kate\")\r",
+							"    pm.expect(resp.family.children[1][1]).to.eql(12)\r",
+							"    pm.expect(resp.family.u_salary_1_5_year).to.eql(4800)\r",
+							"    pm.expect(resp.name).to.eql(\"Tolia\")   \r",
+							"    pm.expect(resp.salary).to.eql(1200)       \r",
+							"});\r",
+							"\r",
+							"pm.test(\"name environment\", function () {\r",
+							"    pm.expect(name).to.eql(pm.environment.get(\"name\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"age request = age response\", function () {\r",
+							"    pm.expect(age_rs).to.eql(age_rq);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "age",
+							"value": "32",
+							"type": "text"
+						},
+						{
+							"key": "salary",
+							"value": "1200",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "{{name}}",
+							"type": "text"
+						},
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}get_test_user",
+					"host": [
+						"{{url}}get_test_user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP6",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = pm.response.json();\r",
+							"\r",
+							"const index = Math.trunc(Math.random() * resp.length);\r",
+							"const item = resp[index];\r",
+							"pm.environment.set(\"id\", item.Cur_ID);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}currency",
+					"host": [
+						"{{url}}currency"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EP7",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const resp = pm.response.json() \r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"        pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"structure check Json\", function () {\r",
+							"    pm.expect(resp).to.have.all.keys(\"Cur_Abbreviation\", \"Cur_ID\", \"Cur_Name\", \"Cur_OfficialRate\", \"Cur_Scale\", \"Date\");\r",
+							"    pm.expect(resp.Cur_Abbreviation).to.eql(\"AFN\")  \r",
+							"    pm.expect(resp.Cur_ID).to.eql(467)\r",
+							"    pm.expect(resp.Cur_Name).to.eql(\"Афгани\")\r",
+							"    pm.expect(resp.Cur_OfficialRate).to.eql(2.6698)\r",
+							"    pm.expect(resp.Cur_Scale).to.eql(100)\r",
+							"    pm.expect(resp.Date).to.eql(\"2021-11-11T00:00:00\")\r",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "auth_token",
+							"value": "{{token}}",
+							"type": "text"
+						},
+						{
+							"key": "curr_code",
+							"value": "{{id}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}curr_byn",
+					"host": [
+						"{{url}}curr_byn"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "test-itemId",
+			"value": ""
+		}
+	]
+}
