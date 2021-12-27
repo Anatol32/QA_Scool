@@ -1,0 +1,20 @@
+PS C:\Users\Rabota> adb devices
+List of devices attached
+DUM0219703002324        device
+
+PS C:\Users\Rabota> adb install \Users\Rabota\AndroidStudioProjects\ToDoList-master\app\build\outputs\apk\debug\app-debug.apk
+Performing Streamed Install
+Success
+
+PS C:\Users\Rabota> adb shell pm list packages todolist
+package:com.android.todolist
+PS C:\Users\Rabota> adb shell pm path com.android.todolist
+package:/data/app/com.android.todolist-mM4b2lpYoO22iLfwHm-XEg==/base.apk
+
+PS C:\Users\Rabota> adb logcat com.android.todolist
+PS C:\Users\Rabota> adb logcat com.android.todolist >todolist_log.txt
+
+PS C:\Users\Rabota> adb shell screencap /storage/emulated/0/adb/log1.png
+PS C:\Users\Rabota> adb pull /storage/emulated/0/adb/log1.png  /Users/Rabota/log_1.png
+
+PS C:\Users\Rabota> adb uninstall com.android.todolist
