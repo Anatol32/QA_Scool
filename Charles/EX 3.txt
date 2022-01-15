@@ -1,0 +1,120 @@
+Подменить параметры запроса в Charles так, чтобы в Postman пришел ответ где другое name,
+daily_food > weight из запроса, а daily_sleep < weight из запроса.
+
+URL	http://162.55.220.72:5005/object_info_1?name=Tolia&age=32&weight=72
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:62154
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": 32,
+	"daily_food": 0.864,
+	"daily_sleep": 180.0,
+	"name": "Tolia"
+}
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/object_info_1?name=Tolia&age=32&weight=72
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:62212
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size
+
+{
+	"age": 32,
+	"daily_food": 3333,
+	"daily_sleep": 2,
+	"name": "Victor"
+}	
+
+URL	http://162.55.220.72:5005/object_info_1?name=Tolia&age=32&weight=0%2C1
+Status	Complete
+Response Code	500 INTERNAL SERVER ERROR
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	text/html; charset=utf-8
+Client Address	127.0.0.1:56010
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>
+
+
+REWRITE
+
+URL	http://162.55.220.72:5005/object_info_1?name=Tolia&age=32&weight=72
+Status	Complete
+Notes	Rewrite Tool: body match "{"age":32,"daily_food":0.864,"daily_sleep":180.0,"name":"Tolia"}" replacement "{"age":32,"daily_food":6535,"daily_sleep":5,"name":"Fedia"}"
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:62281
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": 32,
+	"daily_food": 6535,
+	"daily_sleep": 5,
+	"name": "Fedia"
+}
+
+URL	http://162.55.220.72:5005/object_info_1?name=Tolia&age=32&weight=0.3
+Status	Complete
+Notes	Rewrite Tool: query "weight: 72" => "weight: 0.3"
+Response Code	500 INTERNAL SERVER ERROR
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	text/html; charset=utf-8
+Client Address	127.0.0.1:56089
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<title>500 Internal Server Error</title>
+<h1>Internal Server Error</h1>
+<p>The server encountered an internal error and was unable to complete your request. Either the server is overloaded or there is an error in the application.</p>

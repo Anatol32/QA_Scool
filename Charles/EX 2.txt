@@ -1,0 +1,94 @@
+ Подменить body в Charles так чтобы в запросе ушла salary которую вы вписали в Postman,
+а в u_salary_1_5_year цифра вернулась меньше оригинальной из запроса.
+
+URL	http://162.55.220.72:5005/user_info_3
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61796
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": "32",
+	"family": {
+		"children": [
+			["Alex", 24],
+			["Kate", 12]
+		],
+		"u_salary_1_5_year": 6000
+	},
+	"name": "Tolia  ",
+	"salary": 1500
+}
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/user_info_3
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61816
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": "32",
+	"family": {
+		"children": [
+			["Alex", 24],
+			["Kate", 12]
+		],
+		"u_salary_1_5_year": 1000
+	},
+	"name": "Tolia  ",
+	"salary": 1500
+}
+
+REWRITE
+
+URL	http://162.55.220.72:5005/user_info_3
+Status	Complete
+Notes	Rewrite Tool: body match "6000" replacement "200"
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61844
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": "32",
+	"family": {
+		"children": [
+			["Alex", 24],
+			["Kate", 12]
+		],
+		"u_salary_1_5_year": 200
+	},
+	"name": "Tolia  ",
+	"salary": 1500
+}

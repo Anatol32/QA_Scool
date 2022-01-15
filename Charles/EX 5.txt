@@ -1,0 +1,108 @@
+Сделать через Charles так, чтобы сервер вернул 405 ошибку.
+Подменить salary в request
+Подменить (salary * 2) в response
+
+URL	http://162.55.220.72:5005/object_info_4?name=Tolia&age=32&salary=1200
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55450
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/object_info_4?name=Tolia&age=32&salary=1200
+Status	Complete
+Response Code	405 METHOD NOT ALLOWED
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	text/html; charset=utf-8
+Client Address	127.0.0.1:55476
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	  
+
+URL	http://162.55.220.72:5005/object_info_4?name=Tolia&age=32&salary=120
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55490
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": 32,
+	"name": "Tolia",
+	"salary": [120, "240", "360"]
+}
+
+URL	http://162.55.220.72:5005/object_info_4?name=Tolia&age=32&salary=1200
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55543
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"age": 32,
+	"name": "Tolia",
+	"salary": [1200, "9999", "3600"]
+}
+
+REWRITE
+
+URL	http://162.55.220.72:5005/object_info_4?name=Tolia&age=32&salary=500
+Status	Complete
+Notes	Rewrite Tool: query "salary: 1200" => "salary: 500"
+Rewrite Tool: status changed to "405 METHOD NOT ALLOWED"
+Rewrite Tool: body match "{"age":32,"name":"Tolia","salary":[500,"1000","1500"]}" replacement "{"age":32,"name":"Tolia","salary":[500,"9999429","1500"]}"
+Response Code	405 METHOD NOT ALLOWED
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55566
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size
+
+{
+	"age": 32,
+	"name": "Tolia",
+	"salary": [500, "9999429", "1500"]
+}	

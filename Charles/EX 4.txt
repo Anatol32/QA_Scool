@@ -1,0 +1,88 @@
+- Сделать через Charles так, чтобы сервер вернул 500 код.
+- Сделать через Charles так, чтобы сервер вернул 405 код.
+
+URL	http://162.55.220.72:5005/object_info_2?name=Tolia&age=32&salary=500
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:50697
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/object_info_3?name=tolia&asd=32&DFG=1200
+Status	Complete
+Response Code	500 INTERNAL SERVER ERROR
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	text/html; charset=utf-8
+Client Address	127.0.0.1:55338
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+URL	http://162.55.220.72:5005/object_info_3?name=tolia&age=32&salary=1200
+Status	Complete
+Response Code	405 METHOD NOT ALLOWED
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	text/html; charset=utf-8
+Client Address	127.0.0.1:55357
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+REWRITE
+
+URL	http://162.55.220.72:5005/object_info_3?name=tolia&age=32&salary=1200
+Status	Complete
+Notes	Rewrite Tool: status changed to "500 INTERNAL SERVER ERROR"
+Response Code	500 INTERNAL SERVER ERROR
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55424
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+URL	http://162.55.220.72:5005/object_info_3?name=tolia&age=32&salary=1200
+Status	Complete
+Notes	Rewrite Tool: status changed to "405 METHOD NOT ALLOWED"
+Response Code	405 METHOD NOT ALLOWED
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55442
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	

@@ -1,0 +1,55 @@
+Подменить url в Charles чтобы в запросе ушло имя которые вы вписали в Postman,
+а вернулось то, которое вы подставили в Charles.
+
+URL	http://162.55.220.72:5005/get_method?name=Tolia&age=32
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61606
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/get_method?name=Vova&age=32
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61675
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+REWRITE
+
+URL	http://162.55.220.72:5005/get_method?name=Vasa&age=32
+Status	Complete
+Notes	Rewrite Tool: query "name: Tolia" => "name: Vasa"
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	GET
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:61726
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	

@@ -1,0 +1,95 @@
+Сделать через Charles так, чтобы в Postman вернулся ответ, 
+в котором qa_salary_after_1.5_year переименовано в qa_salary_after_1.5_month
+Сделать так чтобы qa_salary_after_3.5_years было меньше qa_salary_after_12_months в response
+
+URL	http://162.55.220.72:5005/user_info_2
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55932
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	-
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"person": {
+		"u_age": 32,
+		"u_name": ["Tolia", 1200, 32],
+		"u_salary_5_years": 5040.0
+	},
+	"qa_salary_after_1.5_year": 3960.0,
+	"qa_salary_after_12_months": 3240.0,
+	"qa_salary_after_3.5_years": 4560.0,
+	"qa_salary_after_6_months": 2400,
+	"start_qa_salary": 1200
+}
+
+BREAKPOINTS
+
+URL	http://162.55.220.72:5005/user_info_2
+Status	Complete
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55936
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Breakpoints]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"person": {
+		"u_age": 32,
+		"u_name": ["Tolia", 1200, 32],
+		"u_salary_5_years": 5040.0
+	},
+	"qa_salary_after_1.5_month": 3960.0,
+	"qa_salary_after_12_months": 3240.0,
+	"qa_salary_after_3.5_years": 12.0,
+	"qa_salary_after_6_months": 2400,
+	"start_qa_salary": 1200
+}
+
+REWRITE
+
+URL	http://162.55.220.72:5005/user_info_2
+Status	Complete
+Notes	Rewrite Tool: body match "{"person":{"u_age":32,"u_name":["Tolia",1200,32],"u_salary_5_years":5040.0},"qa_salary_after_1.5_year":3960.0,"qa_salary_after_12_months":3240.0,"qa_salary_after_3.5_years":4560.0,"qa_salary_after_6_months":2400,"start_qa_salary":1200}" replacement "{"person":{"u_age":32,"u_name":["Tolia",1200,32],"u_salary_5_years":5040.0},"qa_salary_after_1.5_months":3960.0,"qa_salary_after_12_months":3240.0,"qa_salary_after_3.5_years":11.0,"qa_salary_after_6_months":2400,"start_qa_salary":1200}"
+Response Code	200 OK
+Protocol	HTTP/1.1
+TLS	-
+Method	POST
+Kept Alive	No
+Content-Type	application/json
+Client Address	127.0.0.1:55944
+Remote Address	162.55.220.72/162.55.220.72:5005
+Tags	[Rewrite]
+Connection	
+WebSockets	-
+Timing	
+Size	
+
+{
+	"person": {
+		"u_age": 32,
+		"u_name": ["Tolia", 1200, 32],
+		"u_salary_5_years": 5040.0
+	},
+	"qa_salary_after_1.5_months": 3960.0,
+	"qa_salary_after_12_months": 3240.0,
+	"qa_salary_after_3.5_years": 11.0,
+	"qa_salary_after_6_months": 2400,
+	"start_qa_salary": 1200
+}
